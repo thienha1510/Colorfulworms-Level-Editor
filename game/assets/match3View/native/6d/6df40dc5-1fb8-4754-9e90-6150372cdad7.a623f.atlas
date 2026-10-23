@@ -1,0 +1,34 @@
+
+ndbs.png
+size: 214,207
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zi_biao
+  rotate: true
+  xy: 107, 2
+  size: 102, 103
+  orig: 102, 103
+  offset: 0, 0
+  index: -1
+zi_du
+  rotate: true
+  xy: 2, 107
+  size: 98, 106
+  orig: 98, 106
+  offset: 0, 0
+  index: -1
+zi_nan
+  rotate: true
+  xy: 2, 5
+  size: 100, 103
+  orig: 100, 103
+  offset: 0, 0
+  index: -1
+zi_sheng1
+  rotate: true
+  xy: 110, 106
+  size: 99, 102
+  orig: 99, 102
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+guide_effect.png
+size: 381,1019
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/glow/glow0000
+  rotate: true
+  xy: 201, 507
+  size: 164, 166
+  orig: 248, 251
+  offset: 44, 31
+  index: -1
+images/glow/glow0001
+  rotate: false
+  xy: 2, 46
+  size: 187, 187
+  orig: 248, 251
+  offset: 33, 24
+  index: -1
+images/glow/glow0002
+  rotate: true
+  xy: 2, 431
+  size: 194, 195
+  orig: 248, 251
+  offset: 29, 25
+  index: -1
+images/glow/glow0003
+  rotate: false
+  xy: 2, 627
+  size: 197, 194
+  orig: 248, 251
+  offset: 27, 28
+  index: -1
+images/glow/glow0004
+  rotate: false
+  xy: 2, 823
+  size: 198, 194
+  orig: 248, 251
+  offset: 28, 30
+  index: -1
+images/glow/glow0005
+  rotate: false
+  xy: 2, 235
+  size: 195, 194
+  orig: 248, 251
+  offset: 31, 32
+  index: -1
+images/glow/glow0006
+  rotate: true
+  xy: 202, 837
+  size: 180, 177
+  orig: 248, 251
+  offset: 39, 49
+  index: -1
+images/glow/glow0007
+  rotate: true
+  xy: 202, 673
+  size: 162, 172
+  orig: 248, 251
+  offset: 46, 51
+  index: -1
+images/glow/glow0008
+  rotate: true
+  xy: 199, 368
+  size: 137, 166
+  orig: 248, 251
+  offset: 55, 48
+  index: -1
+images/glow/glow0009
+  rotate: true
+  xy: 199, 239
+  size: 127, 142
+  orig: 248, 251
+  offset: 54, 48
+  index: -1
+images/glow/glow0010
+  rotate: true
+  xy: 199, 114
+  size: 123, 136
+  orig: 248, 251
+  offset: 53, 55
+  index: -1
+images/glow2_00045
+  rotate: false
+  xy: 191, 2
+  size: 110, 110
+  orig: 124, 124
+  offset: 7, 7
+  index: -1

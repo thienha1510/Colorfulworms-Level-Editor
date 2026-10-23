@@ -1,0 +1,111 @@
+
+gx.png
+size: 904,37
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effect/atk2/atk2_zd_add/atk2_zd_add_00000
+  rotate: false
+  xy: 2, 2
+  size: 59, 33
+  orig: 64, 41
+  offset: 5, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00002
+  rotate: false
+  xy: 124, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00004
+  rotate: false
+  xy: 184, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00006
+  rotate: false
+  xy: 244, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00008
+  rotate: false
+  xy: 304, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00010
+  rotate: false
+  xy: 364, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00012
+  rotate: false
+  xy: 424, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00014
+  rotate: false
+  xy: 484, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00016
+  rotate: false
+  xy: 544, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00018
+  rotate: false
+  xy: 604, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00020
+  rotate: false
+  xy: 664, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00022
+  rotate: false
+  xy: 724, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00024
+  rotate: false
+  xy: 784, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00026
+  rotate: false
+  xy: 844, 2
+  size: 58, 33
+  orig: 64, 41
+  offset: 6, 4
+  index: -1
+effect/atk2/atk2_zd_add/atk2_zd_add_00028
+  rotate: false
+  xy: 63, 2
+  size: 59, 33
+  orig: 64, 41
+  offset: 5, 4
+  index: -1

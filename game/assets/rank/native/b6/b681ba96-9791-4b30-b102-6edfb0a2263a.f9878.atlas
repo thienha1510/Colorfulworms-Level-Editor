@@ -1,0 +1,13 @@
+
+phb_fg.png
+size: 26,27
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+x_0
+  rotate: false
+  xy: 2, 2
+  size: 22, 23
+  orig: 32, 32
+  offset: 5, 4
+  index: -1

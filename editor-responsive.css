@@ -1,0 +1,135 @@
+/* Shared layout rules, including the map editor at tablet and phone sizes. */
+html{scrollbar-gutter:stable}
+body{min-width:280px}
+body.editing-map{overflow:hidden}
+.app,.card,.fields>*{min-width:0}
+.app,.card,.project-settings{grid-template-columns:minmax(0,1fr)}
+.card>*{min-width:0}
+input,select,textarea{min-width:0;max-width:100%}
+button{line-height:1.25}
+.tblWrap{min-width:0;width:100%;max-width:100%}
+.syncDlg{max-width:calc(100vw - 24px);max-height:90dvh;overflow:auto}
+.syncDlg form{min-width:0;grid-template-columns:minmax(0,1fr)}
+.syncDlg form>*{min-width:0}
+.syncDlg .blkgrid{grid-template-columns:repeat(auto-fit,minmax(90px,1fr))}
+.syncDlg .blkgrid>*{min-width:0;grid-template-columns:minmax(0,1fr) minmax(0,64px)}
+.syncDlg .blkgrid input[type=number]{width:100%}
+.edDlg{height:96dvh;max-height:96dvh;max-width:calc(100vw - 16px)}
+.edHead{display:grid;gap:7px;padding:10px 12px}
+.editor-title-row,.editor-options,.editor-actions{display:flex;gap:6px 10px;align-items:center;flex-wrap:wrap;min-width:0}
+.editor-title-row .editor-actions{margin-left:auto}
+.edHead .lvNav{margin:0}
+.editor-options>.ed-save-state{margin-left:auto;max-width:none}
+.ed-save-state.dirty{color:var(--gold)}
+.editor-more{position:relative}
+.editor-more>summary{cursor:pointer;border:1px solid var(--line);background:var(--field);border-radius:8px;padding:7px 10px;font-size:12px}
+.editor-difficulty-panel{position:absolute;top:calc(100% + 6px);left:0;z-index:20;width:min(420px,calc(100vw - 36px));padding:14px;display:flex;flex-wrap:wrap;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 8px 32px #0005;max-height:55dvh;overflow:auto}
+.editor-difficulty-panel .tgt{width:100%}
+.editor-difficulty-panel .tgt input{flex:1;min-width:40px;width:auto}
+.editor-panels{display:none;gap:5px}
+.editor-panels button{justify-content:center;min-width:0}
+.editor-panels [aria-pressed=true]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.edBody{grid-template-columns:260px minmax(0,1fr) 285px;overflow:hidden}
+.edBody>.col{overflow:auto;min-height:0}
+.edBody>.colR{grid-column:auto}
+.mobile-label{display:none}
+.stage{min-height:0}
+.boardWrap{min-height:0;overscroll-behavior:contain;touch-action:pan-x pan-y}
+#board{touch-action:none;flex:none}
+.stage .status{white-space:normal;overflow-wrap:anywhere;max-height:3.6em;overflow:auto;flex:none}
+.pane select,.pane details,.pane p{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.sizePop{max-width:calc(100vw - 32px)}
+.confirm-dialog{width:min(480px,calc(100vw - 24px));max-height:90dvh;overflow:auto;background:var(--panel);color:var(--ink);padding:24px;border:1px solid var(--line);border-radius:14px}
+.confirm-dialog::backdrop{background:#0009}
+.confirm-dialog h2{font:800 23px/1.2 var(--display);margin:0 0 12px}
+.confirm-dialog p{font-size:14px;line-height:1.7}
+.confirm-dialog .row{justify-content:flex-end;margin-top:18px}
+@media (1101px <= width <= 1280px){.edBody{grid-template-columns:225px minmax(0,1fr) 240px}.srow{grid-template-columns:88px minmax(0,1fr) 42px;gap:4px}.hud{gap:6px}.zoom input{width:75px}}
+@media(max-width:1100px){
+ .edDlg{width:calc(100vw - 12px);height:calc(100dvh - 12px);max-height:calc(100dvh - 12px);margin:6px;padding:0}
+ .edBody{display:block;overflow:hidden;padding:8px}
+ .edBody>.col{display:none;height:100%;overflow:auto;overscroll-behavior:contain}
+ .edBody>.stage{display:none;height:100%;overflow:hidden}
+ .edDlg[data-panel=board] .stage{display:flex}
+ .edDlg[data-panel=settings] .colL,.edDlg[data-panel=tools] .colR{display:flex}
+ .editor-panels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+ .srow{grid-template-columns:minmax(95px,1fr) minmax(80px,2fr) 62px}
+ .sizePop{display:none}
+ .tools{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .tools button{min-height:40px}
+}
+@media(max-width:600px){
+ body{padding:8px}
+ .top{padding:8px 0;gap:8px}
+ .brand h1{font-size:21px;line-height:1.15}
+ .nav-actions{gap:8px;align-items:center}
+ .nav-links a{padding:8px 5px}
+ .nav-actions .playbox{gap:5px;max-width:100%}
+ .nav-actions .playbox button{padding:9px 8px;font-size:12px}
+ .card{padding:12px}
+ .import-panel{padding:14px}
+ .workspace-heading h2{font-size:20px}
+ .workspace-count{font-size:11px}
+ .mgr-head h2{font-size:18px}
+ .winnav{max-width:100%;gap:2px}
+ .winnav span{padding:0 3px;font-size:11px}
+ .selbar{padding:10px;gap:8px}
+ .selbar input[type=range]{width:110px;flex:1;min-width:50px}
+ .fields,.pfields{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .fields label,.pfields label{min-width:0;overflow-wrap:anywhere}
+ .edHead{padding:8px;gap:6px}
+ .editor-title-row{gap:6px}
+ .edHead h2{font-size:17px}
+ .edHead .sc{gap:4px}
+ .edHead .sc b{font-size:21px}
+ .edHead .tier{font-size:10px;padding:3px 6px}
+ .editor-actions{gap:5px;justify-content:flex-end}
+ .editor-actions button{min-height:36px;padding:7px 9px}
+ .editor-options{gap:5px}
+ .editor-options>.ed-save-state{width:100%;margin:0;font-size:11px}
+ .editor-options>.seg{margin-left:auto}
+ .edHead .seg button{padding:7px 8px}
+ #edPlayGame{padding:8px;font-size:11px}
+ .editor-panels button{font-size:12px;min-height:38px;padding:7px 4px}
+ .edBody{padding:6px}
+ .hud{gap:6px}
+ .hud .grp{gap:5px}
+ .hud .grp:last-child{flex:1;justify-content:flex-end}
+ .edDlg[data-mode=edit] .hud>.grp:first-child{display:none}
+ .edDlg[data-mode=edit] .hud>.grp:last-child{width:100%;justify-content:space-between}
+ .hud .zoom input{width:70px}
+ .hud .zoom{font-size:11px;gap:4px}
+ .timer{padding:5px 7px}
+ .hearts svg{width:17px;height:17px}
+ .stage{padding:7px}
+ .srow{grid-template-columns:95px minmax(50px,1fr) 54px;gap:7px;min-height:36px}
+ .srow .num{font-size:14px;min-height:30px}
+ .tools button{min-height:44px}
+ .sw{width:25px;height:25px}
+ .seedrow{flex-wrap:wrap}
+ .seedrow input{flex-basis:100%}
+ .confirm-dialog{padding:20px}
+ .confirm-dialog .row{display:grid;justify-content:stretch}
+ .confirm-dialog button{justify-content:center;min-height:42px}
+ #edPlayGame .desktop-label{display:none}
+ #edPlayGame .mobile-label{display:inline}
+ .import-dialog{padding:18px}
+}
+@media(max-height:500px) and (max-width:1100px){
+ .edHead{padding:5px 8px;gap:4px}
+ .editor-options>.ed-save-state{width:auto;margin-left:auto}
+ .editor-panels button{min-height:30px}
+ .editor-title-row .mini,.editor-options button{min-height:28px;padding:5px 8px}
+ .edBody{padding:4px 6px}
+ .stage .status{max-height:1.6em}
+}
+@media(pointer:coarse){button,.btn,.nav-links a{min-height:40px}.chartWrap{touch-action:pan-x pan-y}.check{min-height:34px}}
+
+/* Compact IDs and a task result that stays under the board. */
+.exit-free-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(34px,1fr));gap:5px;max-height:160px;overflow:auto}
+.exit-free-list .exit-number{padding:6px 3px;min-width:0;justify-content:center;font-variant-numeric:tabular-nums}
+.map-status-row{display:flex;align-items:flex-start;gap:8px;flex:none;min-width:0}
+.map-status-row .status{flex:1;margin:0;min-width:0}
+.map-status-row>button{flex:none}
+#status.err,.exit-work-status.err{color:var(--danger);font-weight:600}
+@media(max-width:600px){.exit-free-list{grid-template-columns:repeat(auto-fill,minmax(38px,1fr))}.exit-free-list .exit-number{min-height:36px}}

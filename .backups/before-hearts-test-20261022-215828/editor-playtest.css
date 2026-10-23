@@ -1,0 +1,33 @@
+/* Persistent navigation and playtest workflow. */
+.top{position:sticky;top:0;z-index:30;background:var(--bg);padding:14px 6px;border-bottom:1px solid var(--line);box-shadow:0 5px 16px #00000014}
+html{scroll-padding-top:120px}
+.nav-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+.nav-links{display:flex;gap:4px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;padding:8px;border-radius:6px}
+.nav-links a:hover{color:var(--accent);background:var(--field)}
+.game-warm-status{display:block;font-size:10px;color:var(--muted);text-align:right;max-width:280px;margin-top:3px}
+.ed-save-state{font-size:10px;color:var(--muted);max-width:230px;line-height:1.5}
+.export-saved{font-size:12px;color:var(--ok);margin:4px 0}
+.project-settings{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:12px}
+.project-settings summary{cursor:pointer;font-size:12px;color:var(--muted);margin-bottom:10px}
+.exit-design{gap:8px}
+.exit-design h3{font:600 12px var(--body);color:var(--accent);margin:0}
+.exit-design label{font-size:12px;color:var(--muted)}
+.exit-design select{font-size:12px}
+.exit-count{font-size:14px;font-weight:600;margin:0}
+.exit-flow{font:11px/1.8 var(--mono);margin:0;overflow-wrap:anywhere;color:var(--muted)}
+.exit-free-list{display:flex;gap:4px;flex-wrap:wrap}
+.exit-free-list button{color:var(--ok)}
+.exit-work-status{font-size:11px;line-height:1.7;margin:0;white-space:pre-wrap}
+.exit-design .err{color:var(--danger)}
+.testing-game{overflow:hidden}
+.game-test-panel{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;transform:translateX(-200vw);visibility:hidden;pointer-events:none}
+.game-test-panel.open{transform:none;visibility:visible;pointer-events:auto}
+.game-test-panel header{display:flex;gap:12px;padding:12px 18px;justify-content:space-between;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--line);background:var(--panel)}
+.game-test-panel h2{font:800 22px var(--display);margin:0}
+.game-test-stage{position:relative;flex:1;min-height:0;display:flex;justify-content:center;background:#070e11}
+.game-test-stage iframe{height:100%;width:min(100%,calc((100dvh - 90px)*.556));border:0;background:#10181a}
+.game-test-loading{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:12px;background:var(--bg);color:var(--muted);padding:24px}
+.game-test-loading strong{font:800 24px var(--display);color:var(--ink)}
+.game-test-loading p{max-width:60ch;line-height:1.8;font-size:13px}
+@media(max-width:760px){.top{gap:6px;padding:10px 2px}.brand h1{font-size:19px}.brand p{display:none}.nav-actions{justify-content:space-between;width:100%;gap:6px}.nav-links a{padding:5px;font-size:11px}.nav-actions .playbox{width:auto}.game-warm-status{display:none}.top .playbox input{width:62px!important}.top .playbox label{display:none}.game-test-panel header{padding:8px}.game-test-panel h2{font-size:18px}.game-test-panel header .row{gap:4px}.game-test-panel header button{padding:7px;font-size:11px}.game-test-stage iframe{width:100%}}

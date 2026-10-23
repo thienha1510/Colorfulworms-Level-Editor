@@ -1,0 +1,1 @@
+[{"__type__": "cc.Material", "_name": "flash", "_props": [{}], "_states": [{"rasterizerState": {}, "depthStencilState": {}, "blendState": {"targets": [{"blendSrc": 7, "blendDst": 3}]}}], "_defines": [{}], "_effectAsset": {"__uuid__": "786c7c3f-7c85-4eda-a0ec-aece046c2863", "__expectedType__": ""}}]

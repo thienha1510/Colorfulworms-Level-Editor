@@ -1,0 +1,1 @@
+[{"__type__": "cc.Material", "_name": "material-008", "_props": [{}], "_states": [{"rasterizerState": {}, "depthStencilState": {}, "blendState": {"targets": [{}]}}], "_defines": [{"USE_TEXTURE": true}], "_effectAsset": {"__uuid__": "fa5393ec-3ad0-480b-926e-aece0dd7422b", "__expectedType__": ""}}]

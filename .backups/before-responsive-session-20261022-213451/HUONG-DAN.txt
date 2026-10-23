@@ -1,0 +1,134 @@
+COLORFUL WORMS LEVEL EDITOR — BỘ CHƠI THỬ
+Phiên bản 12/10/2026
+
+BẢN QUYỀN VÀ BẢO MẬT
+© 2026 Đội phát triển Colorful Worms. Bộ công cụ này là tài sản nội bộ, chỉ gửi cho người test để chơi thử.
+- Không chia sẻ lại cho người ngoài nhóm test.
+- Không sao chép, chỉnh sửa, dịch ngược hay làm lại code, luật game, bộ sinh map, cách chấm độ khó
+  hay kiến trúc của tool, toàn bộ hay một phần.
+- Không đưa code của tool (file .html, .js) cho Claude, ChatGPT hay AI khác để phân tích, viết lại
+  hoặc làm bản tương tự. Hỏi AI cách DÙNG tool thì được.
+Xong đợt test, vui lòng xoá bộ công cụ khỏi máy.
+
+==================================================================
+1. CHẠY TOOL
+==================================================================
+- Giải nén toàn bộ file zip ra một thư mục (đừng chạy thẳng bên trong file zip).
+  Nếu Windows chặn, bấm chuột phải vào file zip > Properties > tích "Unblock" rồi mới giải nén.
+- Bấm đúp "Chay-editor.bat".
+  Một cửa sổ đen mở ra và trình duyệt tự mở editor (http://localhost:8793/).
+  Giữ cửa sổ đen mở trong lúc dùng tool; đóng nó là tắt tool.
+- Nếu trình duyệt không tự mở: mở Chrome hoặc Edge rồi gõ địa chỉ hiện trong cửa sổ đen.
+- Nếu Windows hỏi quyền mạng cho PowerShell: chọn cho phép mạng riêng (tool chỉ chạy trên máy này).
+- Không cần cài thêm gì. Cần Windows 10/11 và Chrome hoặc Edge.
+
+==================================================================
+2. MÀN HÌNH CHÍNH
+==================================================================
+- Biểu đồ độ khó: đường đứt nét là mục tiêu, đường xanh là độ khó thật của map.
+  Kéo một điểm mục tiêu lên/xuống để neo level đó (điểm tím).
+  ‹ › để xem đoạn level khác, − + để xem nhiều hoặc ít level hơn.
+- "Mẫu đường độ khó": chọn mẫu, bấm Xem trước (đường vàng), rồi Áp dụng.
+- "Sync level" (ví dụ 1-50 hoặc 3,7,12) hoặc "Sync mọi level":
+  sinh hoặc chỉnh map cho khớp mục tiêu, chọn tag kiểu khó và blocker (băng, khóa, bom, cổng, hố đen).
+- Ô level: số lớn = điểm map, số nhỏ = mục tiêu, màu nền = mức khó.
+  Chấm tím = đã neo, chấm xám = đã sửa. Di chuột để xem chi tiết, bấm để mở editor.
+- "Chơi từ level N" > "Chơi trong game": mở GAME THẬT và vào thẳng level N.
+  Level có map trong project dùng map của editor; level khác dùng map gốc của game.
+  Thắng màn thì game tự sang màn tiếp theo.
+
+==================================================================
+3. EDITOR TỪNG LEVEL (popup)
+==================================================================
+- Hàng trên: điểm hiện tại, mục tiêu, Chỉnh tới mục tiêu / Sinh lại / Khó hơn / Dễ hơn,
+  Thiết kế / Chơi thử (mô phỏng trong editor), Chơi trong game, chuyển level, Đóng.
+- Cột trái "Tạo map tự động": kéo các chỉ số, map tạo lại ngay và luôn giải được.
+- Cột phải "Công cụ vẽ tay": vẽ giun, kéo dài, xoá, đảo đầu, tô màu, băng, khóa, bom, chìa, cổng, hố đen.
+  Shift-bấm hoặc chuột phải để giảm số băng/khóa/bom.
+- "Kiểm tra": map có giải được không, giun nào kẹt (viền đỏ), giun nào đi được ngay (viền xanh).
+- Mọi thay đổi tự lưu. Hoàn tác / Làm lại ở phía trên bàn chơi.
+
+==================================================================
+4. LƯU VÀ GỬI KẾT QUẢ
+==================================================================
+- Project tự lưu trong trình duyệt của máy đang dùng.
+  Muốn gửi cho người khác: "Lưu project" (file .json), người kia dùng "Mở project đã lưu".
+- "Thiết lập project và xuất file":
+  · Tải .zip các map: các file .txt đúng định dạng game, kèm level_entries.json và báo cáo CSV.
+  · Lưu vào thư mục project: chọn thư mục assets/bundles của game để ghi thẳng file .txt.
+- Muốn nạp màn có sẵn: "Mở thư mục level" (chọn thẳng game-level hoặc project game),
+  kiểm tra số map trong cửa sổ xem trước, rồi xác nhận nạp.
+
+==================================================================
+5. LƯU Ý KHI TEST
+==================================================================
+- Chơi thử trong game đặt sẵn level và năng lượng 99 trong dữ liệu lưu của game trên localhost.
+  Không ảnh hưởng tới game của người chơi thật.
+- Project gắn với địa chỉ trình duyệt: nếu tool chạy ở cổng khác (8794, 8795...) vì cổng 8793 bận,
+  project cũ sẽ không hiện. Dùng "Lưu project" / "Mở project" để chuyển.
+- Độ khó (0–100) là ước lượng của editor theo luật game, chủ yếu đo "phải dò bao nhiêu con mới thấy
+  1 nước đi". Hãy ghi lại cảm nhận thực tế khi chơi để chỉnh lại thang điểm.
+
+==================================================================
+6. TRONG THƯ MỤC
+==================================================================
+  Chay-editor.bat               bấm đúp để chạy
+  colorful-worms-editor.html    editor
+  serve-static.ps1              server nhỏ trên máy (Cocos cần http://, không chạy được từ file://)
+  game\                         bản web-mobile build của game, thêm:
+    cw-playtest.js              cầu nối chơi thử: chỉ chạy khi URL có ?playtest=1
+    index.html                  thêm 1 dòng <script src="cw-playtest.js"> trước System.import
+  HUONG-DAN.txt                 file này
+  LICENSE.txt, AGENTS.md, CLAUDE.md, GEMINI.md, .cursorrules, .windsurfrules, .github\
+                                thông báo bản quyền (trợ lý AI tự đọc các file này khi mở thư mục)
+
+Khi game build lại (web-mobile): chép bản build mới vào game\, rồi thêm lại dòng
+<script src="cw-playtest.js" charset="utf-8"></script> vào game\index.html, ngay trước đoạn System.import.
+
+Luôn 3 máu: bản game trong game\ đã bỏ luật "cứ 5 màn từ màn 20 chỉ còn 2 máu"
+(game\assets\main\index.*.js: c%5==4&&(c>=19&&(this.nowHp=2,this.maxHp=2),this.nowX,this.nowY)
+ đổi thành c%5==4&&(this.nowX,this.nowY)). Code game gốc (assets/scripts/level2.ts) cần sửa tương tự
+ thì bản phát hành mới khớp: u%5==4&&(u>=19&&(this.nowHp=2,this.maxHp=2),this.nowX,this.nowY)
+ -> u%5==4&&(this.nowX,this.nowY). Nếu build lại game mà chưa sửa level2.ts, màn 20, 25, 30... sẽ lại có 2 máu.
+
+==================================================================
+7. THAO TÁC NẠP DỮ LIỆU (CẬP NHẬT)
+==================================================================
+- Mở thư mục level: chọn thẳng game-level, thư mục xuất map hoặc project game.
+  Editor nhận level2.json, level_entries.json, level.json ở mọi cấp thư mục.
+  Nếu không có danh sách, editor lấy số level từ tên gen_1.txt, gen_2.txt...
+- Kiểm tra số map trong cửa sổ xem trước, rồi bấm Nạp map. Không cần đặt trước
+  Số level = 200. Các level ngoài phạm vi nạp và mục tiêu độ khó được giữ lại.
+- Nạp map / danh sách: chọn .txt hoặc .json. Nếu chỉ chọn level_entries.json,
+  editor sẽ hướng dẫn chọn thư mục chứa map, không làm mất project đang mở.
+- Mở project đã lưu: dùng file tạo bởi Lưu project. File không hợp lệ bị từ chối.
+- Hoàn tác lần nạp: khôi phục project trước lần nạp gần nhất, kể cả sau tải lại trang.
+- Nhập số tại Đi đến level và nhấn Enter để mở nhanh. Ctrl+S để lưu project.
+- Lần đầu mở editor không còn tự sinh map. Muốn tạo map mới, dùng Sync.
+- File ZIP xuất kèm project.json để mở lại, danh sách và các map theo bundle.
+- Có thể chạy bằng Chay-editor.bat hoặc Live Server. Giữ các file
+  colorful-worms-editor.js, editor-import-data.js, editor-import-ui.js,
+  editor-workspace.css cạnh file HTML. Không di chuyển riêng file HTML.
+- Tự lưu gắn với cả trình duyệt, địa chỉ và cổng; dùng Lưu project để chuyển.
+
+==================================================================
+8. LƯU MAP, THIẾT KẾ ĐƯỜNG RA VÀ CHƠI TEST NHANH
+==================================================================
+- Thanh trên cùng bám theo khi cuộn; Nạp map / Các level / Xuất file để đi nhanh.
+- Lưu map (Ctrl+S trong cửa sổ level) cập nhật ngay bảng và bản xuất. Lưu project
+  bên ngoài cửa sổ level tải file project để chuyển máy hoặc giữ bản sao.
+- Thiết kế đường ra có 2 chế độ: Như hiện tại / Mở dần 1-2-3-... đến hết màn.
+  Mở dần là số GIUN CÓ THỂ RA trước mỗi lượt, không phải số giun tự động ra.
+  Sau k lượt, cần min(k+1, N-k) lựa chọn với N là tổng số giun ban đầu.
+  Ví dụ 10 giun: 1-2-3-4-5-5-4-3-2-1. Kiểm tra toàn bộ màn và mọi lựa chọn.
+- Tối ưu map hiện tại giữ thân giun; mở dần có thể thiết lập lại số lượt băng.
+  Nếu hình hiện tại không bảo đảm nhịp cho mọi lựa chọn thì giữ nguyên map và báo lỗi.
+  Tự tạo nhịp mở dần dùng đầu giun hướng ra biên và băng thật của game.
+  Không ghép thêm khóa hoặc bom lên giun có băng. Bỏ chọn cho phép băng để giữ băng cũ.
+  Tự tạo tạo hình mới theo kích thước và số giun. Hoàn tác để quay lại trước thao tác.
+- Game thật được chuẩn bị trong nền. Chơi lại / đổi màn dùng cùng engine.
+  Lần đầu vẫn cần tải engine và tài nguyên cần thiết. Quay lại editor giữ game
+  trong bộ nhớ ở trạng thái tạm dừng; lần chơi tiếp nhận map vừa lưu.
+- examples/gen_200.txt là bản level 200 khó mẫu theo cách chơi cũ.
+  examples/progressive/gen_200.txt là mẫu 104 giun mở dần toàn màn, nạp như map thường.
+  Mẫu mở dần minh họa nhịp thoát; không phải bản khó 100 điểm ở trên.

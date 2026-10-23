@@ -1,0 +1,92 @@
+﻿COLORFUL WORMS LEVEL EDITOR — BỘ CHƠI THỬ
+Phiên bản 12/10/2026
+
+BẢN QUYỀN VÀ BẢO MẬT
+© 2026 Đội phát triển Colorful Worms. Bộ công cụ này là tài sản nội bộ, chỉ gửi cho người test để chơi thử.
+- Không chia sẻ lại cho người ngoài nhóm test.
+- Không sao chép, chỉnh sửa, dịch ngược hay làm lại code, luật game, bộ sinh map, cách chấm độ khó
+  hay kiến trúc của tool, toàn bộ hay một phần.
+- Không đưa code của tool (file .html, .js) cho Claude, ChatGPT hay AI khác để phân tích, viết lại
+  hoặc làm bản tương tự. Hỏi AI cách DÙNG tool thì được.
+Xong đợt test, vui lòng xoá bộ công cụ khỏi máy.
+
+==================================================================
+1. CHẠY TOOL
+==================================================================
+- Giải nén toàn bộ file zip ra một thư mục (đừng chạy thẳng bên trong file zip).
+  Nếu Windows chặn, bấm chuột phải vào file zip > Properties > tích "Unblock" rồi mới giải nén.
+- Bấm đúp "Chay-editor.bat".
+  Một cửa sổ đen mở ra và trình duyệt tự mở editor (http://localhost:8793/).
+  Giữ cửa sổ đen mở trong lúc dùng tool; đóng nó là tắt tool.
+- Nếu trình duyệt không tự mở: mở Chrome hoặc Edge rồi gõ địa chỉ hiện trong cửa sổ đen.
+- Nếu Windows hỏi quyền mạng cho PowerShell: chọn cho phép mạng riêng (tool chỉ chạy trên máy này).
+- Không cần cài thêm gì. Cần Windows 10/11 và Chrome hoặc Edge.
+
+==================================================================
+2. MÀN HÌNH CHÍNH
+==================================================================
+- Biểu đồ độ khó: đường đứt nét là mục tiêu, đường xanh là độ khó thật của map.
+  Kéo một điểm mục tiêu lên/xuống để neo level đó (điểm tím).
+  ‹ › để xem đoạn level khác, − + để xem nhiều hoặc ít level hơn.
+- "Mẫu đường độ khó": chọn mẫu, bấm Xem trước (đường vàng), rồi Áp dụng.
+- "Sync level" (ví dụ 1-50 hoặc 3,7,12) hoặc "Sync mọi level":
+  sinh hoặc chỉnh map cho khớp mục tiêu, chọn tag kiểu khó và blocker (băng, khóa, bom, cổng, hố đen).
+- Ô level: số lớn = điểm map, số nhỏ = mục tiêu, màu nền = mức khó.
+  Chấm tím = đã neo, chấm xám = đã sửa. Di chuột để xem chi tiết, bấm để mở editor.
+- "Chơi từ level N" > "Chơi trong game": mở GAME THẬT và vào thẳng level N.
+  Level có map trong project dùng map của editor; level khác dùng map gốc của game.
+  Thắng màn thì game tự sang màn tiếp theo.
+
+==================================================================
+3. EDITOR TỪNG LEVEL (popup)
+==================================================================
+- Hàng trên: điểm hiện tại, mục tiêu, Chỉnh tới mục tiêu / Sinh lại / Khó hơn / Dễ hơn,
+  Thiết kế / Chơi thử (mô phỏng trong editor), Chơi trong game, chuyển level, Đóng.
+- Cột trái "Tạo map tự động": kéo các chỉ số, map tạo lại ngay và luôn giải được.
+- Cột phải "Công cụ vẽ tay": vẽ giun, kéo dài, xoá, đảo đầu, tô màu, băng, khóa, bom, chìa, cổng, hố đen.
+  Shift-bấm hoặc chuột phải để giảm số băng/khóa/bom.
+- "Kiểm tra": map có giải được không, giun nào kẹt (viền đỏ), giun nào đi được ngay (viền xanh).
+- Mọi thay đổi tự lưu. Hoàn tác / Làm lại ở phía trên bàn chơi.
+
+==================================================================
+4. LƯU VÀ GỬI KẾT QUẢ
+==================================================================
+- Project tự lưu trong trình duyệt của máy đang dùng.
+  Muốn gửi cho người khác: "Lưu project" (file .json), người kia dùng "Mở project".
+- "Thiết lập project và xuất file":
+  · Tải .zip các map: các file .txt đúng định dạng game, kèm level_entries.json và báo cáo CSV.
+  · Lưu vào thư mục project: chọn thư mục assets/bundles của game để ghi thẳng file .txt.
+- Muốn nạp màn có sẵn của game: "Mở thư mục project" (chọn thư mục colorful-worms-client),
+  rồi "Nạp màn từ game vào project".
+
+==================================================================
+5. LƯU Ý KHI TEST
+==================================================================
+- Chơi thử trong game đặt sẵn level và năng lượng 99 trong dữ liệu lưu của game trên localhost.
+  Không ảnh hưởng tới game của người chơi thật.
+- Project gắn với địa chỉ trình duyệt: nếu tool chạy ở cổng khác (8794, 8795...) vì cổng 8793 bận,
+  project cũ sẽ không hiện. Dùng "Lưu project" / "Mở project" để chuyển.
+- Độ khó (0–100) là ước lượng của editor theo luật game, chủ yếu đo "phải dò bao nhiêu con mới thấy
+  1 nước đi". Hãy ghi lại cảm nhận thực tế khi chơi để chỉnh lại thang điểm.
+
+==================================================================
+6. TRONG THƯ MỤC
+==================================================================
+  Chay-editor.bat               bấm đúp để chạy
+  colorful-worms-editor.html    editor
+  serve-static.ps1              server nhỏ trên máy (Cocos cần http://, không chạy được từ file://)
+  game\                         bản web-mobile build của game, thêm:
+    cw-playtest.js              cầu nối chơi thử: chỉ chạy khi URL có ?playtest=1
+    index.html                  thêm 1 dòng <script src="cw-playtest.js"> trước System.import
+  HUONG-DAN.txt                 file này
+  LICENSE.txt, AGENTS.md, CLAUDE.md, GEMINI.md, .cursorrules, .windsurfrules, .github\
+                                thông báo bản quyền (trợ lý AI tự đọc các file này khi mở thư mục)
+
+Khi game build lại (web-mobile): chép bản build mới vào game\, rồi thêm lại dòng
+<script src="cw-playtest.js" charset="utf-8"></script> vào game\index.html, ngay trước đoạn System.import.
+
+Luôn 3 máu: bản game trong game\ đã bỏ luật "cứ 5 màn từ màn 20 chỉ còn 2 máu"
+(game\assets\main\index.*.js: c%5==4&&(c>=19&&(this.nowHp=2,this.maxHp=2),this.nowX,this.nowY)
+ đổi thành c%5==4&&(this.nowX,this.nowY)). Code game gốc (assets/scripts/level2.ts) cần sửa tương tự
+ thì bản phát hành mới khớp: u%5==4&&(u>=19&&(this.nowHp=2,this.maxHp=2),this.nowX,this.nowY)
+ -> u%5==4&&(this.nowX,this.nowY). Nếu build lại game mà chưa sửa level2.ts, màn 20, 25, 30... sẽ lại có 2 máu.

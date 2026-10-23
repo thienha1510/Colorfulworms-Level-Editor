@@ -1,0 +1,55 @@
+
+bingdon.png
+size: 1090,357
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back-clock
+  rotate: false
+  xy: 671, 7
+  size: 95, 95
+  orig: 114, 113
+  offset: 8, 11
+  index: -1
+Kim
+  rotate: false
+  xy: 1030, 133
+  size: 27, 54
+  orig: 27, 54
+  offset: 0, 0
+  index: -1
+body
+  rotate: true
+  xy: 923, 83
+  size: 104, 105
+  orig: 114, 113
+  offset: 3, 5
+  index: -1
+lightball2
+  rotate: false
+  xy: 923, 189
+  size: 165, 166
+  orig: 170, 170
+  offset: 2, 2
+  index: -1
+round
+  rotate: false
+  xy: 671, 104
+  size: 250, 251
+  orig: 267, 266
+  offset: 10, 8
+  index: -1
+roundbig
+  rotate: false
+  xy: 2, 2
+  size: 354, 353
+  orig: 361, 358
+  offset: 4, 3
+  index: -1
+roundbigx
+  rotate: false
+  xy: 358, 27
+  size: 311, 328
+  orig: 411, 413
+  offset: 29, 31
+  index: -1
