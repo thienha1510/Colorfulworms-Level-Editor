@@ -74,7 +74,7 @@ Xong đợt test, vui lòng xoá bộ công cụ khỏi máy.
 6. TRONG THƯ MỤC
 ==================================================================
   Chay-editor.bat               bấm đúp để chạy
-  colorful-worms-editor.html    editor
+  index.html                    editor
   serve-static.ps1              server nhỏ trên máy (Cocos cần http://, không chạy được từ file://)
   game\                         bản web-mobile build của game, thêm:
     cw-playtest.js              cầu nối chơi thử: chỉ chạy khi URL có ?playtest=1

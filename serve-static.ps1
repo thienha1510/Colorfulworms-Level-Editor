@@ -17,12 +17,12 @@ Write-Host ""
 Write-Host "  Colorful Worms Level Editor dang chay: http://localhost:$Port/"
 Write-Host "  Giu cua so nay mo trong luc dung tool. Dong cua so de tat."
 Write-Host ""
-if ($Open) { Start-Process "http://localhost:$Port/colorful-worms-editor.html" }
+if ($Open) { Start-Process "http://localhost:$Port/index.html" }
 while ($l.IsListening) {
   $c = $l.GetContext()
   try {
     $rel = [Uri]::UnescapeDataString($c.Request.Url.AbsolutePath).TrimStart('/')
-    if ($rel -eq '') { $rel = 'colorful-worms-editor.html' }
+    if ($rel -eq '') { $rel = 'index.html' }
     $full = [IO.Path]::GetFullPath((Join-Path $rootFull ($rel -replace '/', '\')))
     if (-not $full.StartsWith($rootFull)) { throw 'forbidden' }
     if (Test-Path $full -PathType Container) { $full = Join-Path $full 'index.html' }
