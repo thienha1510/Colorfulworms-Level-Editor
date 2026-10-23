@@ -243,7 +243,7 @@ textarea{font:12px/1.45 var(--mono);height:110px;resize:vertical;white-space:pre
 /* Answers remain available in design mode, never leak into play mode. */
 #edDlg[data-mode="play"] .exit-design {display:none}
 #edDlg[data-mode="play"] .design-answer {display:none!important}
-#enemySpeedCard{min-width:0}#enemySpeedCard h3{margin:0 0 8px}#enemySpeedValue{display:block;font-weight:700;overflow-wrap:anywhere}#enemySpeed{width:100%;margin:10px 0}
+#enemySpeedCard{min-width:0}#enemySpeedCard h3{margin:0 0 8px}#enemySpeedValue{display:block;font-weight:700;overflow-wrap:anywhere}#enemySpeed{width:100%;min-width:0;margin:0;min-height:36px;touch-action:pan-y;appearance:none;background:transparent;cursor:pointer}#enemySpeed::-webkit-slider-runnable-track{height:8px;border:1px solid var(--line);border-radius:6px;background:var(--field)}#enemySpeed::-webkit-slider-thumb{appearance:none;width:22px;height:22px;border:2px solid var(--panel);border-radius:50%;background:var(--accent);margin-top:-8px}#enemySpeed::-moz-range-track{height:8px;border-radius:6px;background:var(--field)}#enemySpeed::-moz-range-thumb{width:20px;height:20px;border:2px solid var(--panel);border-radius:50%;background:var(--accent)}.enemy-speed-control{display:flex;align-items:center;justify-content:space-between;gap:8px}.enemy-speed-control button{flex:0 0 44px;min-height:44px;font-size:20px}.enemy-speed-control span{font-size:12px;white-space:nowrap;color:var(--muted)}.enemy-speed-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin:8px 0 0}
 #progressiveDifficultyBox{margin:10px 0} #progressiveDifficultyBox select{width:100%}
 .progressive-count-advice{margin:10px 0;padding:10px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;overflow-wrap:anywhere}
 .progressive-count-advice .cap{margin:0 0 6px}.progressive-count-advice strong{display:block;font-size:15px;line-height:1.5}.progressive-count-advice .hint{margin:6px 0 0}
@@ -466,8 +466,10 @@ textarea{font:12px/1.45 var(--mono);height:110px;resize:vertical;white-space:pre
       <section class="pane" id="enemySpeedCard" aria-labelledby="enemySpeedTitle">
         <h3 id="enemySpeedTitle">Tốc độ di chuyển quái</h3>
         <output id="enemySpeedValue" for="enemySpeed" aria-live="polite">x1 - quái đi bình thường</output>
-        <input id="enemySpeed" type="range" min="-4" max="4" step="0.5" value="0" aria-label="Tốc độ di chuyển quái" aria-describedby="enemySpeedHelp">
-        <p class="hint" id="enemySpeedHelp">Tốc độ quái càng nhanh thì màn chơi càng khó.</p>
+        <div class="enemy-speed-scale" aria-hidden="true"><span>x0.25</span><span>x5</span></div>
+        <input id="enemySpeed" type="range" min="0.25" max="5" step="0.25" value="1" aria-label="Tốc độ di chuyển quái" aria-describedby="enemySpeedHelp">
+        <div class="enemy-speed-control"><button id="enemySpeedMinus" type="button" aria-label="Giảm tốc độ quái 0.25">−</button><span>Bước 0.25</span><button id="enemySpeedPlus" type="button" aria-label="Tăng tốc độ quái 0.25">+</button></div>
+        <p class="hint" id="enemySpeedHelp">x1 là tốc độ gốc. Độ khó tính cả bố cục và tốc độ quái, cập nhật khi thả thanh kéo. Bấm Lưu map để giữ thay đổi.</p>
       </section>
       <section class="pane exit-design" aria-labelledby="exitTitle">
         <h3 id="exitTitle">Thiết kế đường ra</h3>
@@ -605,15 +607,15 @@ textarea{font:12px/1.45 var(--mono);height:110px;resize:vertical;white-space:pre
 </dialog>
 <script src="editor-session.js?v=20261022-session1" defer></script>
 <script src="editor-progressive-quality.js?v=20261023-progressive-min10" defer></script>
-<script src="game/cw-enemy-speed.js?v=20261023-progressive-min10" defer></script>
-<script src="editor-enemy-speed-ui.js?v=20261023-simple-speed" defer></script>
-<script src="editor-engine.js?v=20261023-progressive-min10" defer></script>
+<script src="game/cw-enemy-speed.js?v=20261023-quarter-speed5" defer></script>
+<script src="editor-enemy-speed-ui.js?v=20261023-quarter-speed5" defer></script>
+<script src="editor-engine.js?v=20261023-quarter-speed5" defer></script>
 <script src="editor-exit-design.js?v=20261023-progressive-min10" defer></script>
 <script src="editor-density.js?v=20261023-progressive-min10" defer></script>
 <script src="editor-progressive-patterns.js?v=20261023-progressive-min10" defer></script>
 <script src="editor-progressive-generator.js?v=20261023-progressive-min10" defer></script>
 <script src="editor-auto-generate.js?v=20261023-progressive-min10" defer></script>
-<script src="editor-map-tasks.js?v=20261023-progressive-min10" defer></script>
+<script src="editor-map-tasks.js?v=20261023-quarter-speed5" defer></script>
 <script src="editor-workflow.js?v=20261023-clean-help" defer></script>
 <script src="editor-playtest.js?v=20261023-progressive-min10" defer></script>
 <script src="editor-import-data.js?v=20261023-progressive-min10" defer></script>

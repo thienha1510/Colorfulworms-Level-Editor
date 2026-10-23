@@ -8,7 +8,7 @@
    if(pending)return Promise.reject(new Error('Đang chạy tác vụ chỉnh map. Bấm Dừng trước khi bắt đầu tác vụ khác.'));
    return new Promise((resolve,reject)=>{
     let worker;
-    try{const WorkerClass=options.WorkerClass||root.Worker;worker=new WorkerClass(options.url||'editor-design-worker.js?v=20261023-progressive-min10');}
+    try{const WorkerClass=options.WorkerClass||root.Worker;worker=new WorkerClass(options.url||'editor-design-worker.js?v=20261023-quarter-speed5');}
     catch(error){reject(new Error('Không khởi động được bộ tạo map: '+error.message));return;}
     const id=++sequence;pending={worker,id,reject};
     function finish(error,result){if(pending?.id!==id)return;pending=null;worker.terminate();if(error)reject(error);else resolve(result);}

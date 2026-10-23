@@ -255,12 +255,12 @@ Gợi ý số giun cho Tăng lựa chọn sau mỗi con
 
 
 Tốc độ di chuyển quái theo map
-- Trong Thiết kế map: chọn nấc −4 đến +4, bước 0.5, hoặc kéo thanh tốc độ.
-- −4 = ×0.25; −2 = ×0.5; 0 = ×1; +2 = ×2; +4 = ×4. Số âm là chậm hơn, không phải đi lùi.
-- Tốc độ quái càng nhanh thì màn chơi càng khó.
+- Trong Thiết kế map: kéo từ ×0.25 đến ×5, mỗi nấc ×0.25. Dùng nút −/+ để chỉnh từng nấc.
+- Các nấc: ×0.25, ×0.5, ×0.75, ×1, ×1.25, …, ×5; ×1 là tốc độ gốc.
+- Điểm và nhãn độ khó kết hợp bố cục map với áp lực tốc độ quái. Tăng tốc độ tăng điểm, giảm tốc độ giảm điểm (giới hạn 0–100). Bố cục đơn giản không tự được gắn nhãn Rất khó chỉ vì quái nhanh.
 - Lưu map cập nhật TXT/JSON và bản xuất project. Hoàn tác/Làm lại/Reset/Không lưu khôi phục cả tốc độ.
 - Chơi trong game dùng tốc độ của bản nháp hiện tại; Chơi thử trên canvas editor vẫn là kiểm tra đường thoát chỉ có tim.
-- Map cũ thiếu enemySpeedMultiplier dùng mặc định 1. Nếu có, trường phải là số hữu hạn từ 0.25 đến 4.
+- Map cũ thiếu enemySpeedMultiplier dùng mặc định 1. Nếu có, trường phải là số hữu hạn từ 0.25 đến 5.
 - enemySpeedMultiplier được giữ trong file map để dùng cùng luồng upload Firebase; không ghi vào level_entries.json.
 - Tốc độ chỉ áp dụng di chuyển quái, kể cả các đoạn giảm tốc; không đổi máu, sát thương hoặc thời gian thưởng.
 

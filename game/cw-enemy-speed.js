@@ -1,18 +1,27 @@
 /* Shared map setting: enemy movement only, relative to the native 60 fps speed. */
 (function(root){
  'use strict';
- const KEY='enemySpeedMultiplier',ticks=Object.freeze(Array.from({length:17},(_,i)=>-4+i*.5));
+ const KEY='enemySpeedMultiplier',MIN=.25,MAX=5,STEP=.25,ticks=Object.freeze(Array.from({length:20},(_,i)=>(i+1)*STEP));
  function read(raw){
   if(!raw||!Object.prototype.hasOwnProperty.call(raw,KEY))return 1;
   const value=raw[KEY];
-  if(typeof value!=='number'||!Number.isFinite(value)||value<.25||value>4)throw Error('enemySpeedMultiplier phải là số hữu hạn từ 0.25 đến 4.');
+  if(typeof value!=='number'||!Number.isFinite(value)||value<MIN||value>MAX)throw Error('enemySpeedMultiplier phải là số hữu hạn từ 0.25 đến 5.');
   return value;
  }
  function fromSlider(value){
-  if(typeof value!=='number'||!Number.isFinite(value)||value< -4||value>4)throw Error('Nấc tốc độ phải nằm từ -4 đến +4.');
-  return Math.pow(4,value/4);
+  read({[KEY]:value});
+  return Math.round(value/STEP)*STEP;
  }
- function toSlider(multiplier){read({[KEY]:multiplier});return 4*Math.log(multiplier)/Math.log(4);}
+ function toSlider(multiplier){return fromSlider(multiplier);}
+ function difficulty(map,base){
+  if(!base)return base;
+  const multiplier=readMap(map),adjustment=18*Math.log2(multiplier);
+  const score=Math.max(0,Math.min(100,Math.round(base.score+adjustment)));
+  const delta=score-base.score,formatted=Number(multiplier.toFixed(2));
+  return{...base,score,tier:score<20?0:score<40?1:score<60?2:score<75?3:score<90?4:5,
+   baseScore:base.score,enemySpeedMultiplier:multiplier,
+   factors:[...base.factors,{k:'enemySpeed',l:'Áp lực tốc độ quái',raw:'x'+formatted+' · '+(delta>0?'+':'')+delta+' điểm so với x1',v:(Math.log2(multiplier/MIN)/Math.log2(MAX/MIN)),w:0}]};
+ }
  const readMap=map=>read(map?.extraTop);
  function setMap(map,multiplier){read({[KEY]:multiplier});map.extraTop={...map.extraTop,[KEY]:multiplier};}
  function copyMap(source,target){
@@ -38,6 +47,6 @@
   if(!Number.isInteger(previous)||!Number.isInteger(next)||next<=previous)return;
   for(let index=Math.max(0,previous);index<next;index++)route[index]=enemy;
  }
- const api={KEY,ticks,read,readMap,setMap,copyMap,fromSlider,toSlider,reset,advance,recordMovement};
+ const api={KEY,MIN,MAX,STEP,ticks,read,readMap,setMap,copyMap,fromSlider,toSlider,difficulty,reset,advance,recordMovement};
  if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.CWEnemySpeed=api;
 })(typeof globalThis!=='undefined'?globalThis:window);

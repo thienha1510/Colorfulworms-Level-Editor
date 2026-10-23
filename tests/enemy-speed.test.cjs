@@ -3,15 +3,16 @@ const speed=require('../game/cw-enemy-speed'),engine=require('../editor-engine')
 const raw=()=>({XSize:8,YSize:10,Arrows:[{Indices:[1,2]}],chuanSong:[],blackHole:[],yaoShi:[]});
 const file=(value)=>({name:'gen_1.txt',text:async()=>JSON.stringify(value)});
 
-test('all 17 speed steps have the specified exponential mapping and exact inverse',()=>{
- assert.equal(speed.ticks.length,17);assert.deepEqual(speed.ticks,Array.from({length:17},(_,i)=>-4+i*.5));
- for(const value of speed.ticks)assert.ok(Math.abs(speed.toSlider(speed.fromSlider(value))-value)<1e-12);
- for(const [tick,multiplier]of [[-4,.25],[-2,.5],[0,1],[2,2],[4,4]])assert.equal(speed.fromSlider(tick),multiplier);
+test('all 20 speed steps are exact quarter multipliers with a linear inverse',()=>{
+ assert.deepEqual(speed.ticks,Array.from({length:20},(_,i)=>(i+1)*.25));
+ for(const value of speed.ticks){assert.equal(speed.fromSlider(value),value);assert.equal(speed.toSlider(value),value);}
+ assert.equal(speed.toSlider(1.3),1.25);
+ for(const value of [.24,5.01,NaN,Infinity,'1'])assert.throws(()=>speed.fromSlider(value));
 });
 
 test('old maps keep default speed and valid settings round-trip through TXT/JSON and project import',async()=>{
  const old=raw();assert.equal(speed.readMap(engine.fromGame(old)),1);assert.deepEqual(engine.toGame(engine.fromGame(old)),old);
- for(const multiplier of [.25,1,4,Math.pow(4,.125)]){
+ for(const multiplier of [.25,1,4,5,Math.pow(4,.125)]){
   const value={...raw(),enemySpeedMultiplier:multiplier},plan=await importer.prepare([file(value)]),map=engine.fromGame(plan.levels[0].map);
   const txt=JSON.stringify(engine.toGame(map)),project=importer.validateProject({cfg:{start:1,count:1},levels:[{levelid:1,target:50,name:'gen_1',wenname:'game-level',map:txt}]});
   assert.equal(speed.readMap(engine.fromGame(JSON.parse(project.levels[0].map))),multiplier);assert.deepEqual(JSON.parse(txt),value);
@@ -19,7 +20,7 @@ test('old maps keep default speed and valid settings round-trip through TXT/JSON
 });
 
 test('invalid speed data is rejected by import and export instead of silently clamping or coercing',async()=>{
- for(const value of [null,'1',true,0,.249,4.001,NaN,Infinity,undefined]){
+ for(const value of [null,'1',true,0,.249,5.001,NaN,Infinity,undefined]){
   const map={...raw(),enemySpeedMultiplier:value};assert.throws(()=>engine.fromGame(map),/enemySpeedMultiplier/);
   const internal=engine.fromGame(raw());internal.extraTop.enemySpeedMultiplier=value;assert.throws(()=>engine.toGame(internal),/enemySpeedMultiplier/);
   if(value!==undefined)await assert.rejects(importer.prepare([file(map)]),/enemySpeedMultiplier/);
@@ -47,8 +48,8 @@ function controller(multiplier=1,position=0){return{
  morePaths:0,foeBatkNum:0,moveTimeOff:0,moveTimeOff2:1,jiSuanJianGe:0,testTime:0,audioTest:0,audioNum:0
 };}
 
-test('real native movement uses integer route indices at x0.25, x1 and x4 at 30/60/120 fps, including all slow zones',()=>{
- for(const [position,step]of [[0,5],[5000,2],[11000,1]])for(const multiplier of [.25,1,4])for(const fps of [30,60,120]){
+test('real native movement uses integer route indices at x0.25, x1 and x5 at 30/60/120 fps, including all slow zones',()=>{
+ for(const [position,step]of [[0,5],[5000,2],[11000,1]])for(const multiplier of [.25,1,4,5])for(const fps of [30,60,120]){
   const c=controller(multiplier,position);for(let frame=0;frame<fps*2;frame++){nativeUpdate.call(c,1/fps);assert.equal(Number.isInteger(c.allMoveId),true);}
   assert.equal(c.allMoveId-position,2*60*step*multiplier,JSON.stringify({position,multiplier,fps}));
  }
@@ -67,8 +68,33 @@ test('changing enemy speed does not alter map HP/damage/timer metadata',()=>{
  const value={...raw(),hp:3,damage:7,timeBonus:120},map=engine.fromGame(value);speed.setMap(map,4);const output=engine.toGame(map);assert.equal(output.hp,3);assert.equal(output.damage,7);assert.equal(output.timeBonus,120);
 });
 
+test('difficulty responds monotonically to speed while retaining geometry and solvability',()=>{
+ const map=engine.fromGame(raw()),geometry=JSON.stringify(map.worms),base=engine.evaluate(map);
+ assert.equal(base.enemySpeedMultiplier,1);assert.equal(base.score,base.baseScore);
+ let previous=-1;
+ for(const multiplier of speed.ticks){
+  speed.setMap(map,multiplier);const result=engine.evaluate(map);
+  assert.ok(result.score>=previous);previous=result.score;
+  assert.equal(result.baseScore,base.score);assert.equal(result.estT,base.estT);assert.equal(engine.z(map).res.solved,true);
+  assert.equal(JSON.stringify(map.worms),geometry);assert.equal(result.factors.filter(f=>f.k==='enemySpeed').length,1);
+ }
+ assert.ok(previous>base.score);assert.ok(engine.evaluate(map).tier>base.tier);
+ speed.setMap(map,.25);assert.ok(engine.evaluate(map).score<=base.score);
+ speed.setMap(map,1);assert.equal(engine.evaluate(map).score,base.score);
+ assert.equal(speed.difficulty(map,null),null);
+});
+
+test('speed pressure preserves hard map ranking, bounds and existing observation factors',()=>{
+ for(const baseScore of [15,45,70,92]){
+  const map=engine.empty(8,10),base={score:baseScore,tier:0,factors:[{k:'trace'}],observation:{varied:true}};
+  speed.setMap(map,5);const fast=speed.difficulty(map,base);assert.ok(fast.score>baseScore);assert.ok(fast.score<=100);assert.equal(fast.observation,base.observation);
+  speed.setMap(map,.25);assert.ok(speed.difficulty(map,base).score<baseScore);
+  assert.equal(base.score,baseScore);assert.equal(base.factors.length,1);
+ }
+});
+
 test('fast enemies crossing an arrow between rendered frames receive native damage only once',()=>{
- const c=controller(4,180),hits=[],enemy={id:0,over:false,nowMoveSpeedId:100,atkIdArr:[],initFx(){},move(){},addMove(){},batkAudio(){},batk(damage,id){hits.push(damage);this.atkIdArr.push(id);}};
+ const c=controller(5,180),hits=[],enemy={id:0,over:false,nowMoveSpeedId:100,atkIdArr:[],initFx(){},move(){},addMove(){},batkAudio(){},batk(damage,id){hits.push(damage);this.atkIdArr.push(id);}};
  c.xuanHuanAllXY=Array.from({length:20000},(_,x)=>({x,y:0}));c.view['xunHuanArea/foe'].children=[{active:true,ts:enemy}];c.allMoveOff=100;c.bossType=0;c.off=35;
  c.nowAtkarrow=[{arrowover:false,nowMoveSpeedId:120,arrowid:7,atk:9,node:{active:true},audioNum:0,atkMove(){}}];
  nativeUpdate.call(c,1/30);assert.deepEqual(hits,[9]);assert.equal(enemy.nowMoveSpeedId,180);
