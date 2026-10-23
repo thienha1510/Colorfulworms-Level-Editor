@@ -27,6 +27,7 @@ window.CWPlaytestClient = function (api) {
     panel.classList.add('open'); panel.setAttribute('aria-hidden', 'false');
     document.body.classList.add('testing-game');
     document.querySelector('#gameTestClose').focus();
+    send('cw-playtest-audio', { active: true });
   }
   function begin(id, show, bootstrap = false) {
     cancelAdvance(); completedRequest = null; timedOutRequest = null; panel.dataset.completed = 'false';
@@ -76,6 +77,7 @@ window.CWPlaytestClient = function (api) {
     panel.classList.remove('open');
     panel.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('testing-game');
+    send('cw-playtest-audio', { active: false });
     send('cw-playtest-pause');
     if (editorLevel != null) { api.restoreEditor(editorLevel); editorLevel = null; }
     returnFocus?.focus?.();
@@ -129,6 +131,7 @@ window.CWPlaytestClient = function (api) {
   document.querySelector('#gameTestNext').onclick = () => play(level + 1);
   document.querySelector('#gameTestReload').onclick = () => { loaded = false; startup = true; play(level); };
   frame.addEventListener('load', () => {
+    send('cw-playtest-audio', { active: visible });
     if (latestSession && latestSession.requestId !== bootRequestId) send('cw-playtest-play', { session: latestSession, standby: !visible });
   });
   addEventListener('pagehide',()=>{try{localStorage.removeItem?.('cw_playtest_session:'+token);}catch{}});

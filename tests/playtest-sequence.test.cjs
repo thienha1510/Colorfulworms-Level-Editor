@@ -51,3 +51,16 @@ test('the engine boots immediately with an empty project without inserting a pro
 test('booting switches to the latest requested map and ignores an old readiness message',()=>{const f=fixture([1,2]);const boot=f.session().requestId;f.client.prepare(2);const latest=f.session().requestId;assert.notEqual(boot,latest);f.frame.events.load();assert.equal(f.sent.at(-1).session.requestId,latest);f.emit('cw-playtest-ready',{requestId:boot,level:1});assert.notEqual(f.nodes.get('#gameTestPanel').dataset.ready,'true');f.ready();assert.equal(f.nodes.get('#gameTestPanel').dataset.level,'2');});
 test('a cold boot stops waiting at 45 seconds even after switching the requested map',()=>{const f=fixture([1,2]);f.tick(20000);f.client.prepare(2);f.tick(24999);assert.equal(f.nodes.get('#gameTestReload').hidden,true);f.tick(1);assert.match(f.nodes.get('#gameTestStatus').textContent,/45.*giây/);assert.equal(f.sent.at(-1).type,'cw-playtest-abort');f.ready();assert.notEqual(f.nodes.get('#gameTestPanel').dataset.ready,'true');});
 test('a new map uses the warm engine and has a 30 second loading deadline',()=>{const f=fixture([1,2]);f.ready();f.client.play(2);f.tick(29999);assert.equal(f.nodes.get('#gameTestReload').hidden,true);f.tick(1);assert.match(f.nodes.get('#gameTestStatus').textContent,/30.*giây/);assert.equal(f.sent.at(-1).type,'cw-playtest-abort');});
+
+
+test('audio follows panel visibility through warm boot, close during loading, late load and prepared resume',()=>{
+ const f=fixture([1]);
+ const audio=()=>f.sent.filter(data=>data.type==='cw-playtest-audio').at(-1);
+ f.frame.events.load();assert.equal(audio().active,false);
+ f.client.play(1);assert.equal(audio().active,true);
+ f.client.close();assert.equal(audio().active,false);
+ f.frame.events.load();assert.equal(audio().active,false);
+ f.ready();assert.equal(audio().active,false);
+ f.tick(150);f.ready();f.client.play(1);assert.equal(audio().active,true);
+ f.client.close();assert.equal(audio().active,false);
+});
